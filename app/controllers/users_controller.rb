@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     # POST /users    ==> Add userd to db or Create User
     def create 
         user = User.create!(user_params)
+        session[:user_id] = user.id  
         render json: user, status: :created
     end
 
