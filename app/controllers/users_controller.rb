@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
 def create 
-    user_params = User.create!(user_params)
-    render json: user_params, status: :create
+    user = User.create!(user_params)
+    render json: user, status: :created
+    # byebug
+
 end
 
 
