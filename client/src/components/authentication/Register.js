@@ -22,13 +22,13 @@ function Register(props) {
 	}, [error, isAuthenticated]);
 
 	const [newUser, setNewUser] = React.useState({
-		name: "",
+		username: "",
 		email: "",
-		password: "",
+		// password: "",
 		confirmPassword: "",
 	});
 
-	const { name, email, password, confirmPassword } = newUser;
+	const { username, email, password, confirmPassword } = newUser;
 
 	const onChange = (e) => {
 		setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -36,15 +36,15 @@ function Register(props) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (name === "" || email === "" || password === "") {
+		if (username === "" || email === "") {
 			setAlert("Please enter Required fields", "danger");
 		} else if (password !== confirmPassword) {
 			setAlert("Passwords do not match", "danger");
 		} else {
 			register({
-				name,
+				username,
 				email,
-				password,
+				// password,
 			});
 		}
 	};
@@ -57,11 +57,11 @@ function Register(props) {
 
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
-					<label htmlFor="name">Name</label>
+					<label htmlFor="username">Name</label>
 					<input
 						type="text"
-						name="name"
-						value={name}
+						name="username"
+						value={username}
 						onChange={onChange}
 						required
 					/>
