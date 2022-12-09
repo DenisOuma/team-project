@@ -12,8 +12,8 @@ import {
 	UPDATE_CONTACT,
 	FILTER_CONTACTS,
 	CLEAR_FILTER,
-	SET_ALERT,
-	REMOVE_ALERT,
+	// SET_ALERT,
+	// REMOVE_ALERT,
 	CONTACT_ERROR,
 	CLEAR_CONTACTS,
 } from "../types";
@@ -68,7 +68,7 @@ const ContactState = (props) => {
 			},
 		};
 		try {
-			const res = await axios.put(`/contacts/${contact._id}`, contact, config);
+			const res = await axios.put(`/contacts/${contact.id}`, contact, config);
 			dispatch({ type: UPDATE_CONTACT, payload: res.data });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });

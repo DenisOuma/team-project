@@ -8,10 +8,12 @@ import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 function ContactItem({ contact }) {
 	const contactContext = useContext(ContactContext);
 	const { deleteContact, setCurrentContact, clearContact } = contactContext;
-	const { _id, name, email, phone, type } = contact;
+	const { id, name, email, phone, contact_type } = contact;
+
+	console.log("here is the contact".contact);
 
 	const onDelete = () => {
-		deleteContact(_id);
+		deleteContact(id);
 		clearContact();
 	};
 
@@ -23,10 +25,14 @@ function ContactItem({ contact }) {
 					style={{ float: "right" }}
 					className={
 						"badge " +
-						(type === "professional" ? "badge-success" : "badge-primary")
+						(contact_type === "professional"
+							? "badge-success"
+							: "badge-primary")
 					}
 				>
-					{type.charAt(0).toUpperCase() + type.slice(1)}
+					{contact_type === ""
+						? null
+						: contact_type.charAt(0).toUpperCase() + contact_type.slice(1)}
 				</span>
 			</h3>
 
