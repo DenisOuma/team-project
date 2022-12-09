@@ -12,8 +12,8 @@ import {
 	UPDATE_CONTACT,
 	FILTER_CONTACTS,
 	CLEAR_FILTER,
-	SET_ALERT,
-	REMOVE_ALERT,
+	// SET_ALERT,
+	// REMOVE_ALERT,
 	CONTACT_ERROR,
 	CLEAR_CONTACTS,
 } from "../types";
@@ -29,7 +29,7 @@ const ContactState = (props) => {
 	const [state, dispatch] = useReducer(contactReducer, initialState);
 	const getContacts = async () => {
 		try {
-			const res = await axios.get("/api/contacts");
+			const res = await axios.get("/contacts");
 			dispatch({ type: GET_CONTACTS, payload: res.data });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
@@ -43,7 +43,7 @@ const ContactState = (props) => {
 			},
 		};
 		try {
-			const res = await axios.post("/api/contacts", contact, config);
+			const res = await axios.post("/contacts", contact, config);
 			dispatch({ type: ADD_CONTACT, payload: res.data });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
@@ -54,7 +54,7 @@ const ContactState = (props) => {
 
 	const deleteContact = async (id) => {
 		try {
-			await axios.delete(`/api/contacts/${id}`);
+			await axios.delete(`/contacts/${id}`);
 			dispatch({ type: DELETE_CONTACT, payload: id });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
@@ -69,7 +69,7 @@ const ContactState = (props) => {
 		};
 		try {
 			const res = await axios.put(
-				`/api/contacts/${contact._id}`,
+				`/contacts/${contact.id}`,
 				contact,
 				config
 			);

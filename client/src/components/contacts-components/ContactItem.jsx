@@ -8,10 +8,10 @@ import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 function ContactItem({ contact }) {
 	const contactContext = useContext(ContactContext);
 	const { deleteContact, setCurrentContact, clearContact } = contactContext;
-	const { _id, name, email, phone, type } = contact;
+	const { id, name, email, phone} = contact;
 
 	const onDelete = () => {
-		deleteContact(_id);
+		deleteContact(id);
 		clearContact();
 	};
 
@@ -19,7 +19,7 @@ function ContactItem({ contact }) {
 		<div className="card bg-light">
 			<h3 className="text-primary text-left">
 				{name}{" "}
-				<span
+				{/* <span
 					style={{ float: "right" }}
 					className={
 						"badge " +
@@ -27,7 +27,7 @@ function ContactItem({ contact }) {
 					}
 				>
 					{type.charAt(0).toUpperCase() + type.slice(1)}
-				</span>
+				</span> */}
 			</h3>
 
 			<ul className="list">
