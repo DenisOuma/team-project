@@ -13,13 +13,13 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    @contact = find_contact
-    render json: @contact
+    contact = find_contact
+    render json: contact
   end
 
   # POST /contacts
   def create 
-      contact = Contact.create!(**contact_params, user_id: session[:user_id] )
+      contact = Contact.create!(**contact_params, user_id: session[:user_id])
       render json: contact, status: :created
   end
 
@@ -48,11 +48,11 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-      params.require(:contact).permit(:name, :email, :phone)
+      params.require(:contact).permit( :id, :name, :email, :phone)
   end
 
   def find_contact
-    @contact = Contact.find(params[:id])
+    contact = Contact.find_by(id: params[:id])
   end
 
   def render_unprocessable_entity_response(invalid)
