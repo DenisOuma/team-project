@@ -24,7 +24,7 @@ function Register(props) {
 	const [newUser, setNewUser] = React.useState({
 		username: "",
 		email: "",
-		// password: "",
+		password: "",
 		confirmPassword: "",
 	});
 
@@ -36,17 +36,16 @@ function Register(props) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (username === "" || email === "") {
+		if (username === "" || email === "" || password === "") {
 			setAlert("Please enter Required fields", "danger");
 		} else if (password !== confirmPassword) {
 			setAlert("Passwords do not match", "danger");
 		} else {
 			register({
-				username,
-				email,
-				// password,
+				user: { username, email, password },
 			});
 		}
+		console.log(newUser);
 	};
 
 	return (
