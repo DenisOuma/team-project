@@ -83,7 +83,7 @@ const AuthState = (props) => {
 		try {
 			const res = await axios.post("/login", formData, config);
 			// console.log();
-
+			console.log(res);
 			dispatch({
 				type: LOGIN_SUCCESS,
 				payload: res.data,
