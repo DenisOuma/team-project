@@ -40,8 +40,7 @@ function Login(props) {
 			setAlert("Please enter Required fields", "danger");
 		}
 		login({
-			email,
-			password,
+			user: { email, password },
 		});
 	};
 

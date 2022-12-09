@@ -81,7 +81,7 @@ const AuthState = (props) => {
 		};
 
 		try {
-			const res = await axios.post("/api/auth", formData, config);
+			const res = await axios.post("/login", formData, config);
 			// console.log();
 
 			dispatch({
