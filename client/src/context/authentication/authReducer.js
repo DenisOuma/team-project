@@ -20,7 +20,6 @@ export default (state, action) => {
 				loading: false,
 				user: action.payload,
 			};
-
 		case REGISTER_SUCCESS:
 		case LOGIN_SUCCESS:
 			// console.log(action.payload.token);

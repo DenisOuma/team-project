@@ -35,6 +35,7 @@ function ContactForm() {
 		} else {
 			updateContact(contact);
 		}
+		console.log(contact);
 		clearAll();
 	};
 	const clearAll = () => {
