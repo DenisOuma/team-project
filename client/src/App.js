@@ -13,8 +13,8 @@ import AlertMessage from "./components/layout/AlertMessage";
 import setAuthToken from "./utilities/setAuthToken";
 import PrivateRoute from "./components/routes/PrivateRoute";
 
-if (localStorage.userToken) {
-	setAuthToken(localStorage.userToken);
+if (localStorage.getItem("token")) {
+	setAuthToken(localStorage.getItem("token"));
 }
 
 function App() {

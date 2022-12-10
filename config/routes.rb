@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :users, only: [:index, :show, :create]
-  post '/login', to: "auth#create"
-  post '/users', to: "users#create"
-  get '/profile', to: 'users#profile'
+  resources :users, only: [:index,:create]
+  post '/login', to: "users#login"
+  resources :contacts, only: [:index, :show, :update, :destroy]
+  post '/contacts', to: "contacts#create"
 end

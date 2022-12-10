@@ -13,7 +13,7 @@ function ContactForm() {
 				name: "",
 				email: "",
 				phone: "",
-				type: "personal",
+				contact_type: "personal",
 			});
 		}
 	}, [contactContext, current]);
@@ -22,10 +22,10 @@ function ContactForm() {
 		name: "",
 		email: "",
 		phone: "",
-		type: "personal",
+		contact_type: "personal",
 	});
 
-	const { name, email, phone, type } = contact;
+	const { name, email, phone, contact_type } = contact;
 	const onChange = (e) =>
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	const onSubmit = (e) => {
@@ -35,6 +35,7 @@ function ContactForm() {
 		} else {
 			updateContact(contact);
 		}
+		console.log("Here is a new contact ===>", contact);
 		clearAll();
 	};
 	const clearAll = () => {
@@ -71,17 +72,17 @@ function ContactForm() {
 				<h5>Contact Type</h5>
 				<input
 					type="radio"
-					name="type"
+					name="contact_type"
 					value="personal"
-					ckecked={type === "personal"}
+					ckecked={contact_type === "personal"}
 					onChange={onChange}
 				/>{" "}
 				Personal{" "}
 				<input
 					type="radio"
-					name="type"
+					name="contact_type"
 					value="professional"
-					ckecked={type === "professional"}
+					ckecked={contact_type === "professional"}
 					onChange={onChange}
 				/>{" "}
 				Professional{" "}

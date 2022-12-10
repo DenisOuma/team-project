@@ -21,6 +21,8 @@ function Navbar() {
 		clearContacts();
 	};
 
+	console.log("Here is our User ===>", user);
+
 	const authLinks = (
 		<Fragment>
 			<li>
@@ -47,7 +49,7 @@ function Navbar() {
 			</li>
 			<li style={{ display: "flex", alignItems: "center", marginLeft: "20px" }}>
 				{" "}
-				{user && user.name}{" "}
+				{user && user.username}
 				<AccountCircleIcon
 					fontSize="large"
 					style={{ color: "grey", marginLeft: "5px" }}
