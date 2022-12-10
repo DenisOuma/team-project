@@ -16,7 +16,7 @@ import {
 
 const AuthState = (props) => {
 	const initialState = {
-		token: localStorage.getItem("userToken"),
+		token: localStorage.getItem("token"),
 		isAuthenticated: null,
 		loading: true,
 		user: null,
@@ -26,10 +26,10 @@ const AuthState = (props) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const loadUser = async () => {
-		if (localStorage.userToken) {
-			setAuthToken(localStorage.userToken, {
+		if (localStorage.getItem("token")) {
+			setAuthToken(localStorage.getItem("token"), {
 				headers: {
-					"x-auth-token": localStorage.userToken,
+					Authorization: localStorage.getItem("token"),
 				},
 			});
 		}
@@ -83,7 +83,6 @@ const AuthState = (props) => {
 		try {
 			const res = await axios.post("/login", formData, config);
 			// console.log();
-			console.log(res);
 			dispatch({
 				type: LOGIN_SUCCESS,
 				payload: res.data,

@@ -28,8 +28,13 @@ const ContactState = (props) => {
 
 	const [state, dispatch] = useReducer(contactReducer, initialState);
 	const getContacts = async () => {
+		const token = localStorage.getItem("token");
 		try {
-			const res = await axios.get("/contacts");
+			const res = await axios.get("/contacts", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			});
 			dispatch({ type: GET_CONTACTS, payload: res.data });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
@@ -37,9 +42,12 @@ const ContactState = (props) => {
 	};
 
 	const addContact = async (contact) => {
+		const token = localStorage.getItem("token");
+
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
 			},
 		};
 		try {
@@ -53,8 +61,13 @@ const ContactState = (props) => {
 	};
 
 	const deleteContact = async (id) => {
+		const token = localStorage.getItem("token");
 		try {
-			await axios.delete(`/contacts/${id}`);
+			await axios.delete(`/contacts/${id}`, {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			});
 			dispatch({ type: DELETE_CONTACT, payload: id });
 		} catch (err) {
 			dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
@@ -62,9 +75,12 @@ const ContactState = (props) => {
 	};
 
 	const updateContact = async (contact) => {
+		const token = localStorage.getItem("token");
+
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
 			},
 		};
 		try {

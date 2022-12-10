@@ -45,7 +45,6 @@ function Register(props) {
 				user: { username, email, password },
 			});
 		}
-		console.log(newUser);
 	};
 
 	return (

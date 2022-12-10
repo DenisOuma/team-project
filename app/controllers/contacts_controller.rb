@@ -1,67 +1,51 @@
 class ContactsController < ApplicationController
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
   before_action :authorize
-
+  before_action :set_contact, only: %i[ show update destroy ]
 
   # GET /contacts
   def index
-      contacts = Contact.all
-      render json: contacts
+    @contacts = @user.contacts.all
+    render json: @contacts
   end
 
   # GET /contacts/1
   def show
-    contact = find_contact
-    render json: contact
+    render json: @contact
   end
 
   # POST /contacts
-  def create 
-      contact = Contact.create!(contact_params)
-      render json: contact, status: :created
+  def create
+    @contact = Contact.new(contact_params.merge(user: @user))
+
+    if @contact.save
+      render json: @contact, status: :created, location: @contact
+    else
+      render json: @contact.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /contacts/1
-  def update 
-      #find the id
-      contact = find_contact
-      #update
-      contact.update(contact_params)
-      #render json data 
-      render json: contact, status: :created
+  def update
+    if @contact.update(contact_params)
+      render json: @contact
+    else
+      render json: @contact.errors, status: :unprocessable_entity
+    end
   end
-
 
   # DELETE /contacts/1
   def destroy
-      contact = find_contact
-      contact.destroy
-      head :no_content
+    @contact.destroy
   end
 
-  private 
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_contact
+      @contact = Contact.find(params[:id])
+    end
 
-  def authorize
-    return render json: {errors: ["Please login or sign up"]}, status: :unauthorized unless session.include? :user_id
-  end
-
-  def contact_params
-      params.require(:contact).permit( :id, :name, :email, :phone, :contact_type, :user_id )
-  end
-
-  def find_contact
-    contact = Contact.find_by(id: params[:id])
-  end
-
-  def render_unprocessable_entity_response(invalid)
-      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-  end
-
-  def render_not_found_response
-      render json: { error: ["Contact not found"] }, status: :not_found
-  end
-  
+    # Only allow a list of trusted parameters through.
+    def contact_params
+      params.require(:contact).permit(:name, :email, :contact_type, :phone)
+    end
 end
-
