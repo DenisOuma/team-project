@@ -21,8 +21,8 @@ Clone the repository
 ### License
 MIT Licence
 ### Authors
-Phillip Okeyo
-Denis Ouma
-Stephen Kago
-Sharon Nyamongo
-Samwel Waruhiu
+- Denis Ouma
+- Phillip Okeyo
+- Stephen Kago
+- Sharon Nyamongo
+- Samwel Waruhiu
