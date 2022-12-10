@@ -35,6 +35,7 @@ const AuthState = (props) => {
 		}
 		console.log("in load user");
 		try {
+			// do we change this to make a get request to the profile route?
 			const res = await axios.get("/users");
 
 			dispatch({
@@ -77,6 +78,8 @@ const AuthState = (props) => {
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
+				// token??
+				Authorization: `Bearer ${token}`,
 			},
 		};
 
