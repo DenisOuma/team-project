@@ -49,6 +49,3 @@ group :development do
   # gem "spring"
 end
 
-gem "jwt", "~> 2.5"
-
-gem "faker", "~> 3.0"
