@@ -4,8 +4,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    @contacts = Contact.all
-
+    @contacts = @user.contacts.all
     render json: @contacts
   end
 
@@ -16,7 +15,7 @@ class ContactsController < ApplicationController
 
   # POST /contacts
   def create
-    @contact = Contact.new(contact_params)
+    @contact = Contact.new(contact_params.merge(user: @user))
 
     if @contact.save
       render json: @contact, status: :created, location: @contact
@@ -47,6 +46,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :contact_type, :phone, :user_id)
+      params.require(:contact).permit(:name, :email, :contact_type, :phone)
     end
 end
