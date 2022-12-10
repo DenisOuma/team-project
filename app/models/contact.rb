@@ -3,5 +3,5 @@ class Contact < ApplicationRecord
     validates :name, presence: true
     validates :contact_type, presence: true
     validates :phone, presence: true
-    # belongs_to :user
+    belongs_to :user
 end
