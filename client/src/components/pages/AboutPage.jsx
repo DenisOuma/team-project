@@ -15,7 +15,7 @@ function AboutPage() {
 				can now access them from any device with an internet connection.
 			</p>
 			<p className="bg-dark p">
-				<strong>Version</strong> 1.0.0
+				<strong>Version</strong> 3.0.0
 			</p>
 		</div>
 	);
