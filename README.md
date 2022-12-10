@@ -17,7 +17,7 @@ Keeper
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [contac](#contact)
+- [Contact](#contact)
 
 ## General info
 
